@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HelpController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('guest')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('product', [ProductController::class, 'index'])->name('product');
+    Route::get('contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('help', [HelpController::class, 'index'])->name('help');
+    Route::get('login', [AuthenticatedController::class, 'index'])->name('login');
+    Route::get('register', [RegisteredController::class, 'index'])->name('register');
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'index'])->name('forgot-password');
+    Route::post('login', [AuthenticatedController::class, 'store'])->name('login.store');
+    Route::post('register', [RegisteredController::class, 'store'])->name('register.store');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('product', [ProductController::class, 'index'])->name('product');
+    Route::get('contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('help', [HelpController::class, 'index'])->name('help');
+    Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
 });
