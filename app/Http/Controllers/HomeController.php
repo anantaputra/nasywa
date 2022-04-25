@@ -13,6 +13,6 @@ class HomeController extends Controller
 
         $cart = CartController::userCart();
 
-        return view('home')->with('products', $products)->with('cart', $cart);
+        return view('guest.home')->with('products', $products)->with('cart', $cart);
     }
 }

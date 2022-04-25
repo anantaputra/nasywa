@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeController;
@@ -33,5 +34,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
 });
