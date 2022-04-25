@@ -33,9 +33,5 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('product', [ProductController::class, 'index'])->name('product');
-    Route::get('contact', [ContactController::class, 'index'])->name('contact');
-    Route::get('help', [HelpController::class, 'index'])->name('help');
     Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
 });
