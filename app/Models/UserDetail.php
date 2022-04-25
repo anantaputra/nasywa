@@ -13,6 +13,10 @@ class UserDetail extends Model
 
     protected $primaryKey = 'id';
 
+    protected $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $guarded = [];
 
     public function user()

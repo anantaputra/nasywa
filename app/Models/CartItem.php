@@ -11,8 +11,6 @@ class CartItem extends Model
 
     protected $table = 'cart_items';
 
-    protected $primaryKey = 'id';
-
     protected $guarded = [];
 
     public function usernya()
