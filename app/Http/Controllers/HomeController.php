@@ -9,10 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::;
+        $products = Product::orderBy('name', 'asc')->take(3)->get();
 
         $cart = CartController::userCart();
 
-        return view('home');
+        return view('home')->with('products', $products)->with('cart', $cart);
     }
 }
