@@ -44,9 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function detailnya()
+    public function alamatnya()
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->hasMany(Address::class);
     }
 
     public function cartnya()

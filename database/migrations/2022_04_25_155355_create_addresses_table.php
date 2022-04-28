@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_details', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->string('id', 36)->primary();
             $table->string('user_id', 36);
-            $table->string('phone', 36)->nullable();
-            $table->string('phone_verified_at', 36)->nullable();
-            $table->text('address', 255)->nullable();
-            $table->string('gender')->nullable();
+            $table->string('name');
+            $table->string('phone', 36);
+            $table->text('address', 255);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_details');
+        Schema::dropIfExists('addresses');
     }
 };

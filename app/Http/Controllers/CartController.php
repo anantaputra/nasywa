@@ -9,7 +9,8 @@ class CartController extends Controller
 {
     public static function userCart(){
         if(auth()->user()){
-            $cart = CartItem::where('user_id', auth()->user()->id)->get();
+            $item = CartItem::where('user_id', auth()->user()->id)->get();
+            $cart = count($item);
         } else {
             $cart = null;
         }

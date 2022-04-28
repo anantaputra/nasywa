@@ -43,7 +43,6 @@ class RegisteredController extends Controller
         }
 
         $userID = 'USR' . $lastnumber;
-        $userDetailID = 'USR' . $lastnumber . 'D';
 
         $user = new User();
         $user->id = $userID;
@@ -52,11 +51,6 @@ class RegisteredController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-
-        $userDetail = new UserDetail();
-        $userDetail->id = $userDetailID;
-        $userDetail->user_id = $userID;
-        $userDetail->save();
 
         $user->notify(new NewUser($user));
 

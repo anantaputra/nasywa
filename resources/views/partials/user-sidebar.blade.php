@@ -21,13 +21,13 @@
         <div class="px-8">
             <ul class="py-1 text-sm font-normal" aria-labelledby="dropdownDefault">
                 <li>
-                  <a href="#" class="block py-2 px-4 hover:bg-gray-100 {{ Request::is('user/account/profile') ? 'text-red-400' : '' }}">Profil</a>
+                  <a href="{{ route('user.profile') }}" class="block py-2 px-4 hover:bg-gray-100 {{ Route::is('user.profile') ? 'text-red-400' : '' }}">Profil</a>
                 </li>
                 <li>
-                  <a href="#" class="block py-2 px-4 hover:bg-gray-100 {{ Request::is('user/account/address') ? 'text-red-400' : '' }}">Alamat</a>
+                  <a href="{{ route('user.address') }}" class="block py-2 px-4 hover:bg-gray-100 {{ Route::is('user.address') ? 'text-red-400' : '' }}">Alamat</a>
                 </li>
                 <li>
-                  <a href="#" class="block py-2 px-4 hover:bg-gray-100 {{ Request::is('user/account/password') ? 'text-red-400' : '' }}">Ganti Password</a>
+                  <a href="{{ route('user.change-password') }}" class="block py-2 px-4 hover:bg-gray-100 {{ Route::is('user.change-password') ? 'text-red-400' : '' }}">Ganti Password</a>
                 </li>
               </ul>
         </div>

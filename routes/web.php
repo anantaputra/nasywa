@@ -67,5 +67,19 @@ Route::middleware('auth')->group(function () {
                 ->name('user.change-password');
         Route::get('purchase', [PurchaseController::class, 'index'])
                 ->name('user.purchase');
+        Route::post('profile-update', [ProfileController::class, 'update'])
+                ->name('user.profile-update');
     });
+});
+
+Route::get('apa', function(){
+    $nama = 'Ananta Putra Starna';
+    $explode = explode(' ', $nama);
+    $length = count($explode);
+    $lastname = $explode[$length - 1];
+    $firstname = '';
+    for($i = 0; $i < $length - 1; $i++){
+        $firstname .= $explode[$i] . ' ';
+    }
+    echo $firstname;
 });

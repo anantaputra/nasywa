@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserDetail extends Model
+class Address extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_details';
+    protected $table = 'addresses';
 
     protected $primaryKey = 'id';
 
@@ -19,7 +19,7 @@ class UserDetail extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function usernya()
     {
         return $this->belongsTo(User::class);
     }
