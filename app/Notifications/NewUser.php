@@ -2,10 +2,12 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewUser extends Notification
 {
@@ -16,9 +18,9 @@ class NewUser extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -40,10 +42,15 @@ class NewUser extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = URL::temporarySignedRoute(
+            'verify', now()->addMinutes(30), ['hash' => encrypt($this->user->email)]
+        );
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                ->markdown('emails.user.email-verification', [
+                    'notifiable' => $notifiable,
+                    'url' => $url,
+                ]);
     }
 
     /**

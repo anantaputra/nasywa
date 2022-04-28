@@ -72,35 +72,35 @@
 
     @auth
 
-        {{-- profil --}}
-        <div class="flex justify-end">
-            <div class="menu-item">
-                <div class="relative flex items-center">
-                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-white cursor-pointer" onclick="dropdownMenu()">
-                        <img src="/img/neonbrand-SDprf7W3NUc-unsplash.jpg" alt="avatar" class="w-full h-full">
-                    </div>
-                </div>
-                <div class="w-32 h-auto bg-red-100 absolute right-16" id="account">
-                    <div class="w-full flex items-center justify-between border-b cursor-pointer px-2 space-x-2 pt-2 pb-1 hover:bg-red-50">
-                        <span>Profil</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <form action="{{ route('logout') }}" method="post" id="logout-form">
-                        @csrf
-                        <button class="w-full" type="submit">
-                            <div class="w-full flex items-center justify-between cursor-pointer px-2 space-x-2 pt-1 pb-2 hover:bg-red-50">
-                                <span>Keluar</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </form>
-                </div>
+    <div class="flex items-center md:order-2">
+        <button type="button" class="w-10 h-10 flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown">
+            <span class="sr-only">Open user menu</span>
+            <img class="w-10 h-10 rounded-full" src="https://source.unsplash.com/400x300?man" alt="user photo">
+        </button>
+        <!-- Dropdown menu -->
+        <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="dropdown">
+            <div class="py-3 px-4">
+                <span class="block text-sm text-gray-900">{{ auth()->user()->firstname }}</span>
+                <span class="block text-sm font-medium text-gray-500 truncate">{{ auth()->user()->email }}</span>
             </div>
+            <ul class="py-1" aria-labelledby="dropdown">
+                <li>
+                    <a href="{{ route('user.profile') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Akun saya</a>
+                </li>
+                <li>
+                    <a href="{{ route('user.purchase') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Pesanan saya</a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Keluar</a>
+                </li>
+            </ul>
         </div>
+        <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mobile-menu-2" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+            <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+    </div>
 
     @else
         
