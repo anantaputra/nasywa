@@ -12,6 +12,6 @@ class AddressController extends Controller
     {
         $cart = CartController::userCart();
 
-        return view('user.detail.address')->with('cart', $cart);
+        return view('user.detail.address', compact('cart'));
     }
 }

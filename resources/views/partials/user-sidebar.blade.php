@@ -1,13 +1,19 @@
 <div class="w-1/4 py-4 space-y-8">
     <div class="w-11/12 flex items-center space-x-4 border-b pt-2 pb-4">
+      <a href="{{ route('user.profile') }}">
         <img class="w-14 h-14 rounded-full" src="../../img/neonbrand-SDprf7W3NUc-unsplash.jpg" alt="" srcset="">
+      </a>
         <div>
-           <div class="font-semibold">ananta</div> 
-           <div class="flex text-sm font-medium text-gray-500 cursor-pointer __editP">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                </svg>
-                <span>Edit Profil</span>
+          <a href="{{ route('user.profile') }}">
+            <div class="font-semibold">ananta</div> 
+          </a>
+           <div class="flex text-sm font-medium text-gray-500 cursor-pointer">
+             <a href="{{ route('user.profile') }}" class="flex">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+              </svg>
+              <span>Edit Profil</span>
+            </a>
            </div>
         </div>
     </div>

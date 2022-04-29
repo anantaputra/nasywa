@@ -74,10 +74,9 @@
     </div>
     <div class="w-1/2 bg-white opacity-100 rounded border py-8 px-10 top-56 left-1/4 absolute __mdemvrf">
         <p class="text-xl font-semibold flex justify-center mb-4">Konfirmasi Email</p>
-        <p class="mb-2">
-            Silahkan periksa email anda, kami telah mengirimkan Email verifikasi ke alamat email anda.
+        <p class="mb-2 flex justify-center">
+            Terima kasih anda telah melakukan konfirmasi email anda
         </p>
-        <span>Jika anda belum mendapatkan email <a href="">klik disini</a> untuk mengirimkan ulang email verifikasi.</span>
         <div class="flex justify-center mt-4">
             <button class="bg-red-300 px-8 py-2.5 rounded text-white font-semibold" id="btn-close-modal">
                 Tutup    

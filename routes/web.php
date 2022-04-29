@@ -14,6 +14,7 @@ use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\PurchaseController;
+use App\Http\Controllers\User\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,8 @@ Route::middleware('auth')->group(function () {
                 ->name('user.purchase');
         Route::post('profile-update', [ProfileController::class, 'update'])
                 ->name('user.profile-update');
+        Route::get('email-verification', [VerificationController::class, 'email'])
+                ->name('user.email-verify');
     });
 });
 

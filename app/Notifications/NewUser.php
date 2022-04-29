@@ -47,6 +47,7 @@ class NewUser extends Notification
         );
 
         return (new MailMessage)
+                ->subject('Verifikasi Email Anda')
                 ->markdown('emails.user.email-verification', [
                     'notifiable' => $notifiable,
                     'url' => $url,

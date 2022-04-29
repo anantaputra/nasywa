@@ -23,6 +23,6 @@ class VerifiedController extends Controller
             $user->save();
         }
 
-        return redirect('/')->with('success', 'Your email has been verified. You can now login.');
+        return redirect('/')->with('status', 'Email verified!');
     }
 }
