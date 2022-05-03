@@ -18,11 +18,11 @@
     {{-- menu item --}}
     <div class="w-1/3 menu-item mt-6 {{ Request::is('checkout') || Request::is('cart') || Request::is('user/account/..') ? 'hidden' : '' }}">
         <ul class="flex justify-center">
-            {{-- <li class="mr-16">
+            <li class="mr-16">
                 <a href="{{ route('home') }}" class="block text-gray-600 hover:text-red-400 duration-300 {{ Request::is('/') ? 'text-red-400' : '' }}">Home</a>
                 <div class="flex justify-center {{ !Request::is('/') ? 'hidden' : '' }}">
                     <div class="w-2 h-2 bg-red-300 rounded-full"></div>
-                </div> --}}
+                </div>
             </li>
             <li class="mr-16">
                 <a href="{{ route('product') }}" class="text-gray-600 hover:text-red-400 duration-300 {{ Request::is('product') ? 'text-red-400' : '' }}">Produk</a>
