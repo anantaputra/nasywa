@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex px-16">
+<div class="flex px-16 mt-4 mb-4">
 
     @include('partials.user-sidebar')
 

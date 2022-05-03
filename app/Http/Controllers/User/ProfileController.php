@@ -18,6 +18,11 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z\s]*$/',
+            'phone' => 'nullable|numeric|digits_between:10,13',
+        ]);
+
         $user = User::find(auth()->user()->id);
         
         $name = $request->name;
