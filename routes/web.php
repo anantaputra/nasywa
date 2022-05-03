@@ -43,6 +43,10 @@ Route::middleware('guest')->group(function () {
                 ->name('register');
     Route::get('forgot-password', [PasswordResetLinkController::class, 'index'])
                 ->name('password.request');
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'sendResetLinkEmail'])
+                ->name('password-link.send');
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'index'])
+                ->name('password.reset');
     Route::post('login', [AuthenticatedController::class, 'store'])
                 ->name('login.store');
     Route::post('register', [RegisteredController::class, 'store'])
@@ -57,6 +61,12 @@ Route::middleware('auth')->group(function () {
                 ->name('verify');
     Route::get('cart', [CartController::class, 'index'])
                 ->name('cart');
+    Route::get('cart/{id}', [CartController::class, 'addToCart'])
+                ->name('cart.add');
+    Route::get('cart/remove/{id}', [CartController::class, 'removeFromCart'])
+                ->name('cart.remove');
+    Route::get('checkout', [CheckoutController::class, 'index'])
+                ->name('checkout');    
     Route::get('logout', [AuthenticatedController::class, 'destroy'])
                 ->name('logout');
     Route::prefix('user')->group(function(){

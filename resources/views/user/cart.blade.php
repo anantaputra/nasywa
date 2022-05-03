@@ -41,7 +41,19 @@
                             </svg>
                         </div>
                     </div>
-                    <span>Hapus</span>
+                    <a href="cart/remove/{{ $item->id }}">Hapus</a>
+                </div>
+            </div>
+
+            <div class="fixed left-16 right-16 bottom-0 border-t py-6 px-4 flex justify-end space-x-10">
+                <div class="text-lg font-semibold">
+                    Subtotal
+                </div>
+                <div class="text-lg font-semibold __sub">
+                    {{ $total }}
+                </div>
+                <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer" onclick="checkout()">
+                    Checkout
                 </div>
             </div>
 
@@ -91,55 +103,7 @@
 
     @endif
 
-    <div class="fixed left-16 right-16 bottom-0 border-t py-6 px-4 flex justify-end space-x-10">
-        <div class="text-lg font-semibold">
-            Subtotal
-        </div>
-        <div class="text-lg font-semibold __sub">
-            {{ $subtotal }}
-        </div>
-        <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer" onclick="checkout()">
-            Checkout
-        </div>
-    </div>
-
 </div>
-
-{{-- <script>
-    function func(id){
-        var x = document.getElementById('checkbox-'+id).checked;
-        console.log(x);
-        if(x){
-            console.log('checked');
-            $.ajax({
-                url: 'check',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id,
-                    check: true,
-                },
-                success: function(data){
-                    console.log(data);
-                }
-            })
-        } else {
-            console.log('unchecked');
-            $.ajax({
-                url: 'check',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id,
-                    check: false,
-                },
-                success: function(data){
-                    console.log(data);
-                }
-            })
-        }
-    }
-</script> --}}
 
 <script>
     function plus(id){

@@ -1,6 +1,6 @@
 <div class="min-w-full flex justify-beetwen p-4 space-x-20 px-16 {{ Request::is('checkout') ? '' : ''}} {{ Request::is('cart') ? 'space-x-48' : '' }} {{ Request::is('user/account/..') ? 'space-x-32' : '' }} {{ Request::is('login') || Request::is('register') ? 'hidden' : '' }}">
 
-    <div class="w-1/3 flex {{ Request::is('checkout') ? 'w-full' : ''}}">
+    <div class="w-1/2 flex {{ Request::is('checkout') ? 'w-full' : ''}}">
         <span class="logo cursor-pointer"><a href="/"> Nasywa </a></span>
         
         {{-- title cart --}}
@@ -9,7 +9,7 @@
             @if (Request::is('checkout'))
                 <span class="text-red-300">Checkout</span>
             @else
-                <span>Shopping Cart</span>
+                <span>Keranjang Belanja</span>
             @endif
         </div>
 
@@ -61,7 +61,7 @@
                     </svg>
                     @if (auth()->user() && $cart > 0)
                         <div class="w-6 h-6 bg-red-400 border border-red-200 rounded-full absolute pt-1 -top-4 left-3 {{ !isset($cart) ? 'hidden' : '' }}">
-                            <div class="text-white text-xs flex justify-center" id="counterCart">{{ count($cart) }}</div>
+                            <div class="text-white text-xs flex justify-center" id="counterCart">{{ $cart }}</div>
                         </div>
                     @endif
                 </div>
