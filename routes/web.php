@@ -6,15 +6,16 @@ use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Auth\VerifiedController;
-use App\Http\Controllers\Auth\RegisteredController;
-use App\Http\Controllers\Auth\AuthenticatedController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\User\AddressController;
-use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Auth\VerifiedController;
 use App\Http\Controllers\User\PurchaseController;
+use App\Http\Controllers\Auth\RegisteredController;
 use App\Http\Controllers\User\VerificationController;
+use App\Http\Controllers\Auth\AuthenticatedController;
+use App\Http\Controllers\User\ChangePasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 /*
 |--------------------------------------------------------------------------

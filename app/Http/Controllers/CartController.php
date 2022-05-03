@@ -53,12 +53,17 @@ class CartController extends Controller
     {
         $cart = CartItem::where('user_id', auth()->user()->id)->get();
         $item = CartItem::find($id);
-        $item->delete();
-
-        return redirect()->back()->with([
-            'status' => 'Produk berhasil dihapus dari keranjang',
-            'cart' => $cart,
-        ]);
+        $user_id = auth()->user()->id;
+        
+        if($item->usernya->id == $user_id){
+            $item->delete();
+            return redirect()->back()->with([
+                'status' => 'Produk berhasil dihapus dari keranjang',
+                'cart' => $cart,
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     public function index()
@@ -68,7 +73,7 @@ class CartController extends Controller
         $total = 0;
         
         for($i = 0; $i < count($items); $i++){
-            $total += $items[$i]->price * $items[$i]->quantity;
+            $total += $items[$i]->productnya->price * $items[$i]->quantity;
         }
 
         return view('user.cart', compact('items', 'total'));

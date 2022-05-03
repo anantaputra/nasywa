@@ -9,11 +9,11 @@
         <div class="w-full flex justify-between py-6 px-16 border-b font-medium text-lg">
             <div class="space-x-6">
                 {{-- <input id="checkbox-all" aria-describedby="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"> --}}
-                <span>Product</span>
+                <span>Produk</span>
             </div>
             <div class="flex justify-between space-x-40">
-                <span>Price</span>
-                <span>Quantity</span>
+                <span>Harga</span>
+                <span>Jumlah</span>
                 <span>&nbsp;</span>
             </div>
         </div>
@@ -24,18 +24,18 @@
                 <div class="flex space-x-6 items-center">
                     {{-- <input id="checkbox-{{ $item->id }}" onchange="func({{ $item->id }})" value="{{ $item->id }}" aria-describedby="checkbox-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 "> --}}
                     <img src="/img/neonbrand-SDprf7W3NUc-unsplash.jpg" class="w-20 h-20" alt="" srcset="">
-                    <span class="-mt-12">{{ $item->name }}</span>
+                    <span class="-mt-12">{{ $item->productnya->name }}</span>
                 </div>
                 <div class="flex justify-between space-x-24">
-                    <span id="price-{{ $item->id }}">{{ $item->price }}</span>
+                    <span id="price-{{ $item->productnya->id }}">{{ $item->productnya->price }}</span>
                     <div class="flex border -mt-2">
-                        <div class="bg-red-300 flex items-center p-2 _plus" onclick="plus({{ $item->id }})">
+                        <div class="bg-red-300 flex items-center p-2 _plus" onclick="plus({{ $item->productnya->id }})">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <div id="qty-{{ $item->id }}" class="w-12 flex items-center justify-center __qty">{{ $item->quantity }}</div>
-                        <div class="bg-red-300 flex items-center p-2 _minus" onclick="min({{ $item->id }})">
+                        <div id="qty-{{ $item->productnya->id }}" class="w-12 flex items-center justify-center __qty">{{ $item->quantity }}</div>
+                        <div class="bg-red-300 flex items-center p-2 _minus" onclick="min({{ $item->productnya->id }})">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
                             </svg>
@@ -52,8 +52,8 @@
                 <div class="text-lg font-semibold __sub">
                     {{ $total }}
                 </div>
-                <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer" onclick="checkout()">
-                    Checkout
+                <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer">
+                    <a href="{{ route('checkout') }}">Checkout</a>
                 </div>
             </div>
 
@@ -145,9 +145,6 @@
                 document.querySelector('.__sub').innerText = data.at(1)
             }
         });
-    }
-    function checkout(){
-        window.location.href = '{{ route('checkout') }}';
     }
 </script>
 

@@ -66,7 +66,7 @@
     </div>
  
     
-    @if (Session::has('status'))    
+    @if (session('status') === 'Email verified!')    
     {{-- email verfiication link is sent --}}
     <div class="w-full h-full fixed top-0 left-0 __bgvrf">
         <div class="w-full h-full bg-gray-900 opacity-75">
