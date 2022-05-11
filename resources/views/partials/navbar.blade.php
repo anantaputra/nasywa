@@ -37,7 +37,7 @@
                 </div>
             </li>
             <li>
-                <a href="#" class="text-gray-600 hover:text-red-400 duration-300 {{ Request::is('help') ? 'text-red-400' : '' }}">Bantuan</a>
+                <a href="{{ route('help') }}" class="text-gray-600 hover:text-red-400 duration-300 {{ Request::is('help') ? 'text-red-400' : '' }}">Bantuan</a>
                 <div class="flex justify-center {{ !Request::is('help') ? 'hidden' : '' }}">
                     <div class="w-2 h-2 bg-red-300 rounded-full"></div>
                 </div>

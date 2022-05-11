@@ -13,44 +13,75 @@
 
             <div class="border border-red-400 rounded-md text-white py-2.5 px-4 text-center font-normal bg-red-400 cursor-pointer" data-modal-toggle="defaultModal">Tambah Alamat Baru</div>
         </div>
-    @for ($i = 0; $i < 3; $i++)        
-    <div class="w-full flex px-4 py-8 border-t space-x-6">
-        <div class="w-1/5 font-light text-gray-600">
-            <div class="flex justify-end">
-                Nama
-            </div>
-            <div class="flex justify-end">
-                Telepon
-            </div>
-            <div class="flex justify-end">
-                Alamat
-            </div>
-        </div>
-        <div class="w-3/5 font-light">
-            <div class="font-semibold">
-                Nama kamu
-            </div>
-            <div>
-                (+62) 812-345-6789
-            </div>
-            <div>
-                Kuwangan, Cawan, Jatinom
-            </div>
-        </div>
-        <div class="w-1/5 font-light">
-            <div class="flex space-x-10 justify-end mb-4">
+    @if (isset($addresses))
+        @foreach($addresses as $address)
+        <div class="w-full flex px-4 py-8 border-t space-x-6">
+            <div class="w-1/5 font-light text-gray-600">
                 <div class="flex justify-end">
-                    Edit
+                    Nama
                 </div>
                 <div class="flex justify-end">
-                    Hapus
+                    Telepon
+                </div>
+                <div class="flex justify-end">
+                    Alamat
+                </div>
+                <div class="flex justify-end">
+                    Kota
+                </div>
+                <div class="flex justify-end">
+                    Provinsi
+                </div>
+                <div class="flex justify-end">
+                    Kode Pos
                 </div>
             </div>
-            <div class="border py-1.5 px-4 text-center text-sm font-normal cursor-pointer hover:bg-gray-200">Atur sebagai utama</div>
+            <div class="w-3/5 font-light">
+                <div class="font-semibold">
+                    {{ $address->name }}
+                </div>
+                <div>
+                    {{ $address->phone }}
+                </div>
+                <div>
+                    {{ $address->address }}
+                </div>
+                <div>
+                    {{ App\Http\Controllers\User\AddressController::getCityName($address->province, $address->city) }}
+                </div>
+                <div>
+                    {{ App\Http\Controllers\User\AddressController::getProvinceName($address->province) }}
+                </div>
+                <div>
+                    {{ $address->postal }}
+                </div>
+            </div>
+            <div class="w-1/5 font-light">
+                @if ( $address->utama == 1)
+                    <div class="flex justify-end">
+                        <div class="w-1/2 bg-white border border-red-100 py-1.5 px-4 text-center text-sm font-normal mb-4">Utama</div>
+                    </div>
+                @endif
+                <div class="flex space-x-10 justify-end mb-4">
+                    <div class="flex justify-end">
+                        Edit
+                    </div>
+                    <div class="flex justify-end">
+                        Hapus
+                    </div>
+                </div>
+                @if ( $address->utama == 0)
+                    <div class="w-full border py-1.5 px-4 text-center text-sm font-normal cursor-pointer hover:bg-gray-200">Atur sebagai utama</div>
+                @endif
+            </div>
         </div>
-    </div>
-    @endfor
-
+        @endforeach    
+    @else
+        <div class="w-full flex px-4 py-24 justify-center items-center">
+            <span>Alamat belum ditambahkan</span>
+        </div>
+    @endif
+    
     </div>
 
 </div>
@@ -69,7 +100,8 @@
                 </button>
             </div>
            {{-- form tambah alamat --}}
-            <form action="" method="post" class="w-full bg-white border px-2">
+            <form action="{{ route('user.address.store') }}" method="post" class="w-full bg-white border px-2">
+                @csrf
                 <div class="flex flex-wrap p-5">
                     <div class="w-full flex px-3 space-x-4 mb-4">
                         <input type="text" name="name" id="name" class="appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nama">
@@ -77,19 +109,24 @@
                     </div>
                     <div class="w-full flex space-x-4 px-3 mb-4">
                         <div class="w-full">
-                            <select id="province" onchange="showCities()" class="appearence-none border border-gray-200 text-gray-700  leading-tight focus:outline-none focus:shadow-outline rounded block w-full px-3 py-2">
+                            <select name="province" id="province" onchange="showCities()" class="appearence-none border border-gray-200 text-gray-700  leading-tight focus:outline-none focus:shadow-outline rounded block w-full px-3 py-2">
                                 <option value="0" selected disabled>--Pilih Provinsi--</option>
-                                
+                                @foreach ($provinces as $province)
+                                <option value="{{ $province->province_id }}">{{ $province->province }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="w-full">
-                            <select disabled id="city" class="appearence-none border border-gray-200 text-gray-700  leading-tight focus:outline-none focus:shadow-outline rounded block w-full px-3 py-2">
+                            <select name="city" disabled id="city" class="appearence-none border border-gray-200 text-gray-700  leading-tight focus:outline-none focus:shadow-outline rounded block w-full px-3 py-2">
                                 <option selected disabled>--Pilih Kota--</option>
                             </select>
                         </div>
+                        <div class="w-1/2">
+                            <input type="text" name="postal" id="postal" class="appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kode Pos">
+                        </div>
                     </div>
                     <div class="w-full px-3 mb-4">
-                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-700 rounded border border-gray-200 " placeholder="Nama Jalan, Gedung, No. Rumah"></textarea>
+                        <textarea name="detail" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-700 rounded border border-gray-200 " placeholder="Nama Jalan, Gedung, No. Rumah"></textarea>
                     </div>
                     <div class="w-full px-3 mb-4">
                         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm w-full sm:w-auto px-5 py-2.5 text-center">Simpan</button>
@@ -99,5 +136,33 @@
         </div>
     </div>
 </div>    
+
+<script>
+    function showCities(){
+        var province = document.getElementById('province').value;
+        console.log(province);
+        if(province != 0){
+            $.ajax({
+                url: '/getCities',
+                type: 'GET',
+                data: {
+                    province: province
+                },
+                success: function(data){
+                    console.log(data);
+                    $('#city').removeAttr('disabled');
+                    $('#city').find('option').remove().end().append('<option value="0" selected disabled>--Pilih Kota--</option>');
+                    $.each(data, function(index, value){
+                        $('#city').append('<option value="'+value.city_id+'">'+value.city_name+'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#city').attr('disabled', 'disabled');
+            $('#city').empty();
+            $('#city').append('<option selected disabled>--Pilih Kota--</option>');
+        }
+    }
+</script>
 
 @endsection

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CartItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -19,4 +20,13 @@ class Product extends Model
 
     protected $guarded = [];
     
+    public function cart()
+    {
+        return $this->hasMany(CartItem::class, 'product_id', 'id');
+    }
+
+    public function detailnya()
+    {
+        return $this->hasMany(ProductDetail::class, 'product_id', 'id');
+    }
 }

@@ -52,9 +52,11 @@
                 <div class="text-lg font-semibold __sub">
                     {{ $total }}
                 </div>
-                <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer">
-                    <a href="{{ route('checkout') }}">Checkout</a>
-                </div>
+                <a href="{{ route('checkout') }}">
+                    <div class="py-2.5 px-4 text-white bg-red-400 cursor-pointer">
+                        Checkout
+                    </div>
+                </a>
             </div>
 
         @endforeach

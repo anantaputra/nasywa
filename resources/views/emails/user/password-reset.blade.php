@@ -6,6 +6,8 @@ Silahkan gunakan link dibawah ini untuk mereset password Anda.
 Reset Password
 @endcomponent
 
+Abaikan email ini jika anda tidak merasa mengajukan permintaan reset password.
+
 Hormat Kami,<br>
 {{ config('app.name') }}
 @endcomponent

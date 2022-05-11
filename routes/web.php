@@ -12,6 +12,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Auth\VerifiedController;
 use App\Http\Controllers\User\PurchaseController;
 use App\Http\Controllers\Auth\RegisteredController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\User\VerificationController;
 use App\Http\Controllers\Auth\AuthenticatedController;
 use App\Http\Controllers\User\ChangePasswordController;
@@ -37,17 +38,22 @@ Route::get('contact', [ContactController::class, 'index'])
 Route::get('help', [HelpController::class, 'index'])
             ->name('help');
 
+Route::prefix('password')->group(function () {
+    Route::get('forgot', [PasswordResetLinkController::class, 'index'])
+        ->name('password.request');
+    Route::post('forgot', [PasswordResetLinkController::class, 'sendResetLinkEmail'])
+        ->name('password-link.send');
+    Route::get('reset/{token}', [NewPasswordController::class, 'index'])
+        ->name('password.reset');
+    Route::post('reset', [NewPasswordController::class, 'store'])
+        ->name('password.reset.store');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedController::class, 'index'])
                 ->name('login');
     Route::get('register', [RegisteredController::class, 'index'])
                 ->name('register');
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'index'])
-                ->name('password.request');
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'sendResetLinkEmail'])
-                ->name('password-link.send');
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'index'])
-                ->name('password.reset');
     Route::post('login', [AuthenticatedController::class, 'store'])
                 ->name('login.store');
     Route::post('register', [RegisteredController::class, 'store'])
@@ -70,11 +76,17 @@ Route::middleware('auth')->group(function () {
                 ->name('checkout');    
     Route::get('logout', [AuthenticatedController::class, 'destroy'])
                 ->name('logout');
+    Route::get('provinsi', [AddressController::class, 'getAllProvinces'])
+                ->name('getProvince');
+    Route::get('getCities', [AddressController::class, 'getCityByProvince'])
+                ->name('getCities');
     Route::prefix('user')->group(function(){
         Route::get('profile', [ProfileController::class, 'index'])
                 ->name('user.profile');
         Route::get('address', [AddressController::class, 'index'])
                 ->name('user.address');
+        Route::post('address', [AddressController::class, 'store'])
+                ->name('user.address.store');
         Route::get('change-password', [ChangePasswordController::class, 'index'])
                 ->name('user.change-password');
         Route::get('purchase', [PurchaseController::class, 'index'])
@@ -84,16 +96,4 @@ Route::middleware('auth')->group(function () {
         Route::get('email-verification', [VerificationController::class, 'email'])
                 ->name('user.email-verify');
     });
-});
-
-Route::get('apa', function(){
-    $nama = 'Ananta Putra Starna';
-    $explode = explode(' ', $nama);
-    $length = count($explode);
-    $lastname = $explode[$length - 1];
-    $firstname = '';
-    for($i = 0; $i < $length - 1; $i++){
-        $firstname .= $explode[$i] . ' ';
-    }
-    echo $firstname;
 });

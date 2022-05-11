@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone', 36);
             $table->text('address', 255);
+            $table->string('province', 36);
+            $table->string('city', 36);
+            $table->string('postal', 36);
+            $table->boolean('utama')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

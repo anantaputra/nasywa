@@ -26,8 +26,11 @@
             @yield('content')
         </div>
     </div>
+@elseif(auth()->user())
+    @include('partials.navbar')
+    @yield('content')
 @else
-    @if (!Request::is('forgot-password'))
+    @if (!Request()->route()->getPrefix('password'))
         @include('partials.navbar')
     @endif
     @yield('content')
