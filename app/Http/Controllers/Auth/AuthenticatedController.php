@@ -18,7 +18,11 @@ class AuthenticatedController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('home');
+            if(auth()->user()->admin == 1){
+                return redirect()->route('admin.dashboard');
+            } else{
+                return redirect()->route('home');
+            }
         }
 
         return redirect()->route('login')->with('error', 'Invalid credentials');

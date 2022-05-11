@@ -19,7 +19,7 @@
 </head>
 <body>
 
-@if (auth()->user() && auth()->user()->admin == true && strpos(Request::route()->getName(), 'admin') !== false)
+@if (auth()->user() && auth()->user()->admin == true && Request()->route()->getPrefix('admin'))
     <div class="w-full flex">
         @include('partials.admin-sidebar')
         <div class="w-full pl-60 py-12">

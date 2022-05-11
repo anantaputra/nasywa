@@ -97,3 +97,29 @@ Route::middleware('auth')->group(function () {
                 ->name('user.email-verify');
     });
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('/', function(){
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('profil', function(){
+            return view('admin.profile');
+    })->name('admin.profile');
+
+    Route::get('produk', function(){
+            return view('admin.product');
+    })->name('admin.product');
+
+    Route::get('pesan', function(){
+            return view('admin.complaint');
+    })->name('admin.inbox');
+
+    Route::get('pesanan', function(){
+            return view('admin.order');
+    })->name('admin.order');
+
+    Route::get('transaksi', function(){
+        return view('admin.transaction');
+    })->name('admin.transaction');
+});
