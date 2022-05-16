@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\CartItem;
+use App\Models\ProductDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,6 +28,6 @@ class Product extends Model
 
     public function detailnya()
     {
-        return $this->hasMany(ProductDetail::class, 'product_id', 'id');
+        return $this->hasMany(ProductDetail::class);
     }
 }

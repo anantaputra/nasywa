@@ -18,7 +18,13 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <span class="w-full text-7xl font-semibold">999 orang</span>
+                <span class="w-full text-7xl font-semibold">
+                    @if (isset($user))
+                        {{ $user }}
+                    @else
+                        0
+                    @endif
+                </span>
             </div>
         </div>
         <div class="w-full">
@@ -33,7 +39,13 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <span class="w-full text-7xl font-semibold">999 produk</span>
+                <span class="w-full text-7xl font-semibold">
+                    @if (isset($product))
+                        {{ $product }}
+                    @else
+                        0
+                    @endif
+                </span>
             </div>
         </div>
     </div>
