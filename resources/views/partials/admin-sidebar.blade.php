@@ -2,7 +2,7 @@
 <aside class="w-64 fixed" aria-label="Sidebar">
     <div class="min-h-screen overflow-y-auto py-4 px-3 bg-gray-50 rounded">
         <a href="{{ URL::to('/') }}" class="flex items-end pl-2.5 mb-12 mt-5">
-            <img src="../../img/icon.svg" class="h-20 mr-3 sm:h-16" alt="Nasywa Logo">
+            <img src="{{ asset('img/icon.svg') }}" class="h-20 mr-3 sm:h-16" alt="Nasywa Logo">
             <span class="font-bold text-5xl sm:text-4xl text-red-300 logo">asywa</span>
         </a>
         <ul class="space-y-4">
@@ -16,6 +16,14 @@
                 <a href="{{ route('admin.profile') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 {{ Request::is('admin/profil') ? 'bg-red-300 text-white hover:text-gray-500' : '' }}">
                     <svg class="flex-shrink-0 w-6 h-6 transition duration-75 group-hover:text-gray-900 {{ Request::is('admin/profil') ? 'hover:text-gray-500' : 'text-gray-500' }}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                     <span class="flex-1 ml-3 whitespace-nowrap">Profil</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.category') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 {{ Request::is('admin/kategori') ? 'bg-red-300 text-white hover:text-gray-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-6 h-6 transition duration-75 group-hover:text-gray-900 {{ Request::is('admin/kategori') ? 'hover:text-gray-500' : 'text-gray-500' }}" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Kategori</span>
                 </a>
             </li>
             <li>

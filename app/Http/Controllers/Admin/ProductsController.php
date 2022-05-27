@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Variant;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
@@ -12,11 +14,27 @@ class ProductsController extends Controller
     {
         $products = Product::all();
 
-        return view('admin.product', compact('products'));
+        return view('admin.product.index', compact('products'));
     }
 
     public function create()
     {
-        return view('admin.product.add-product');
+        $categories = Category::all();
+
+        return view('admin.product.add-product', compact('categories'));
+    }
+
+    public function getVariantBy(Request $request)
+    {
+        $variants = Variant::where('category_id', $request->category)->get();
+
+        return response()->json($variants);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+
+        ]);
     }
 }

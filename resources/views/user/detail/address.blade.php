@@ -140,7 +140,6 @@
 <script>
     function showCities(){
         var province = document.getElementById('province').value;
-        console.log(province);
         if(province != 0){
             $.ajax({
                 url: '/getCities',
@@ -149,7 +148,6 @@
                     province: province
                 },
                 success: function(data){
-                    console.log(data);
                     $('#city').removeAttr('disabled');
                     $('#city').find('option').remove().end().append('<option value="0" selected disabled>--Pilih Kota--</option>');
                     $.each(data, function(index, value){

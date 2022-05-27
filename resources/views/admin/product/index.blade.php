@@ -3,13 +3,8 @@
 @section('content')
 
 <div class="w-full px-16">
-    <div class="w-full flex space-x-8 border-b shadow-b-md mb-4">
-        <div id="product" class="w-auto flex items-center justify-between cursor-pointer font-semibold text-red-300 border-b-2 border-red-400 py-2.5">
-            <span>Produk</span>
-        </div>
-        <div id="category" class="w-auto flex items-center justify-between cursor-pointer font-semibold text-slate-400 hover:text-red-300 hover:border-b-2 hover:border-red-400 py-2.5">
-            <span>Kategori</span>
-        </div>
+    <div class="w-auto flex items-center justify-between cursor-pointer text-2xl font-semibold text-red-300">
+        <span>Daftar Produk</span>
     </div>
 
     {{-- tambah product --}}
@@ -73,5 +68,4 @@
 
 </div>
 
-<script src="{{ asset('js/_adp1.js') }}"></script>
 @endsection

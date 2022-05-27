@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HelpController;
@@ -108,11 +109,32 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
             return view('admin.profile');
     })->name('admin.profile');
 
+    Route::group(['prefix' => 'kategori'], function(){
+        Route::get('/', [CategoryController::class, 'index'])
+                ->name('admin.category');
+        Route::get('/tambah', [CategoryController::class, 'add'])
+                ->name('admin.category.add');
+        Route::post('/tambah', [CategoryController::class, 'store'])
+                ->name('admin.category.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])
+                ->name('admin.category.edit');
+        Route::post('/edit', [CategoryController::class, 'update'])
+                ->name('admin.category.update');
+        Route::get('/detail/{id}', [CategoryController::class, 'detail'])
+                ->name('admin.category.detail');
+        Route::get('/varian/tambah/{id}', [CategoryController::class, 'addVariant'])
+                ->name('admin.category.addVariant');
+        Route::post('varian/tambah', [CategoryController::class, 'storeVariant'])
+                ->name('admin.category.storeVariant');
+    });
+
     Route::group(['prefix' => 'produk'], function () {
         Route::get('/', [ProductsController::class, 'index'])
                 ->name('admin.product');
         Route::get('tambah', [ProductsController::class, 'create'])
                 ->name('admin.product.create');
+        Route::get('getVarian', [ProductsController::class, 'getVariantBy'])
+                ->name('admin.getVariant');
         Route::get('edit', [ProductsController::class, 'edit'])
                 ->name('admin.product.edit');
     });
